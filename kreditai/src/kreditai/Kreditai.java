@@ -15,13 +15,13 @@ import static jdk.nashorn.internal.objects.NativeMath.round;
  * @author kraputis
  */
 public class Kreditai {
-    
+
     private Scanner in;
     private int m;
     private float b;
     private float t, t1;
     private float v;
-    
+
     public Kreditai() {
         setIn(new Scanner(System.in));
         setM(0);
@@ -36,23 +36,23 @@ public class Kreditai {
     public void setIn(Scanner in) {
         this.in = in;
     }
-    
+
     public void setM(int m) {
         this.m = m;
     }
-    
+
     public void setB(float b) {
         this.b = b;
     }
-    
+
     public void setT(float t) {
         this.t = t;
     }
-    
+
     public void setT1(float t1) {
         this.t1 = t1;
     }
-    
+
     public void setV(float v) {
         this.v = v;
     }
@@ -62,23 +62,23 @@ public class Kreditai {
     public Scanner getIn() {
         return in;
     }
-    
+
     public int getM() {
         return m;
     }
-    
+
     public float getB() {
         return b;
     }
-    
+
     public float getT() {
         return t;
     }
-    
+
     public float getT1() {
         return t1;
     }
-    
+
     public float getV() {
         return v;
     }
@@ -95,25 +95,21 @@ public class Kreditai {
         int c = in.nextInt();
         System.out.println("Laikotarpis 50 metų - pastato amžius, bet ne daugiau 40 metų");
         int l = in.nextInt();
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("                      Kredito skaiciuokle                     ");
-        System.out.println("--------------------------------------------------------------");
+        print_title("Kredito skaiciuokle");
         System.out.println("Menesine imoka : ");
         setM(c / (l * 12));
         System.out.println(getM());
         System.out.println("Bendra grazintine suma : ");
         setB((c + (c * 13f / 100f)));
         System.out.println(getB());
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("             Sutarties sudarimo apskaiciavimai                ");
-        System.out.println("--------------------------------------------------------------");
+        print_title(" Sutarties sudarimo apskaiciavimai");
         setT((200 * x));
-        setT1(m + (m * 40f / 100f));
+        setT1(getM() + (getM() * 40f / 100f));
         //System.out.println("Menesine imoka 40%");
         //System.out.println(t1);
         if (y <= getT()) {
             System.out.println("Kreditas nesuteikiamas");
-            
+
         } else {
             if (getT1() > ((y - getT()) - z)) {
                 System.out.println("Kreditas nesuteikiamas");
@@ -121,10 +117,8 @@ public class Kreditai {
                 System.out.println("Kreditas suteikiamas");
             }
         }
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("               Kredito grazinimo laikotarpis                  ");
-        System.out.println("--------------------------------------------------------------");
-        setV(b / m);
+        print_title("Kredito grazinimo laikotarpis");
+        setV(getB() / getM());
         System.out.println("Kredito grazinimas menesiais");
         System.out.println(getV());
         System.out.println("Kredito grazinimas metais");
@@ -132,8 +126,6 @@ public class Kreditai {
         System.out.println("");
     }
 
-    ////////////////////////////////////////////////////
-    //////////////////////////////////////////////
     void vartojimo() {
         System.out.println("Iveskite vaiku skaiciu nuo 0-10");
         int x = in.nextInt();
@@ -145,25 +137,21 @@ public class Kreditai {
         int c = in.nextInt();
         System.out.println("Laikotarpis iki 5 metu");
         int l = in.nextInt();
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("                      Kredito skaiciuokle                     ");
-        System.out.println("--------------------------------------------------------------");
+        print_title("Kredito skaiciuokle");
         System.out.println("Menesine imoka : ");
         setM(c / (l * 12));
         System.out.println(getM());
         System.out.println("Bendra grazintine suma : ");
         setB(c + (c * 1f / 100f));
         System.out.println(getB());
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("             Sutarties sudarimo apskaiciavimai                ");
-        System.out.println("--------------------------------------------------------------");
+        print_title("Sutarties sudarimo apskaiciavimai");
         setT(200 * x);
-        setT1(m + (m * 40f / 100f));
+        setT1(getM() + (getM() * 40f / 100f));
         //System.out.println("Menesine imoka 40%");
         //System.out.println(t1);
         if (y <= getT()) {
             System.out.println("Kreditas nesuteikiamas");
-            
+
         } else {
             if (getT1() > ((y - getT()) - z)) {
                 System.out.println("Kreditas nesuteikiamas");
@@ -171,15 +159,19 @@ public class Kreditai {
                 System.out.println("Kreditas suteikiamas");
             }
         }
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("               Kredito grazinimo laikotarpis                  ");
-        System.out.println("--------------------------------------------------------------");
-        setV(b / m);
+        print_title("Kredito grazinimo laikotarpis");
+        setV(getB() / getM());
         System.out.println("Kredito grazinimas menesiais");
         System.out.println(getV());
         System.out.println("Kredito grazinimas metais");
         System.out.println(getV() / 12);
         System.out.println("");
     }
-    
+
+    private void print_title(String title) {
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("                       " + title + "                          ");
+        System.out.println("--------------------------------------------------------------");
+    }
+
 }
